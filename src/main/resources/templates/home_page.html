@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All users</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row" style="height: 45px">
+    <div class="col-11" style="background-color: black; height: 45px">
+      <p class="mt-2 ml-3 h4">
+        <a class="text-white font-weight-bold" th:text="${#request.remoteUser}">
+        </a>
+        <a class="text-white font-weight-light">with roles: </a>
+        <span class="text-white font-weight-light" th:each="rol : ${roles}">
+                   <a th:text="${rol.getName()}"></a>
+               </span>
+      </p>
+    </div>
+    <div class="col-1" style="background-color: black; height: 45px">
+      <p class="mt-1 ml-3">
+        <a href="/login" class="btn btn-link text-secondary">Logout</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="row" style="height: 800px">
+    <div class="nav flex-column nav-pills col-2 pr-0 mt-3" id="v-pills-tab" role="tablist"
+         aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+         aria-controls="v-pills-home" aria-selected="true">User</a>
+    </div>
+    <div class="tab-content col-10" id="v-pills-tabContent" style="background-color: whitesmoke">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+           aria-labelledby="v-pills-home-tab">
+
+        <h1>User information-page</h1>
+        <div class="border">
+          <h4 class="mt-3 ml-3 mb-3">About user</h4>
+        </div>
+        <div class="border" style="background-color: white">
+          <div class="mt-3 ml-3 mb-3 mr-3">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th class="font-weight-light" scope="row" th:text="${activeUser.id}"></th>
+                <td th:text="${activeUser.name}"></td>
+                <td th:text="${activeUser.lastName}"></td>
+                <td th:text="${activeUser.age}"></td>
+                <td th:text="${activeUser.userName}"></td>
+                <td>
+                                                    <span th:each="userRole : ${activeUser.getRoleSet()}">
+                                                                <a th:text="${userRole.getName()}"></a>
+                                                    </span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
